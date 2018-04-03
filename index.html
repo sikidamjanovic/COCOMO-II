@@ -113,95 +113,37 @@
         var k = 0
         var l = 0
         var m = 0
-	factor = getValue(document.calculateForm.FactorField)
+	
+	factor = getValue(document.calculateForm.group1)
         //  this if is to check if the user forgot to check a weighting factor and he/she will see an alert message.        
         if (factor == 0)
            {  alert("We must select a weighting factor.");}
         //  The next if statements are to check if user inputs are valid which it should be integers
-        else { var count1 = document.calculateForm.inputs;
-               if (!isInt(count1.value))
-               {
-                  alert("Number of user inputs must be integer.");
-                  document.calculateForm.inputs.focus();
-                  return (false);
-               }  
-               var count2 = document.calculateForm.outputs;
-               if (!isInt(count2.value))
-               {
-                  alert("Number of user outputs must be integer.");
-                  document.calculateForm.outputs.focus();
-                  return (false);
-               } 
-               var count3 = document.calculateForm.inquiries;
-               if (!isInt(count3.value))
-               {
-                  alert("Number of Inquiries must be integer.");
-                  document.calculateForm.inquiries.focus();
-                  return (false);
-               } 
-               var count4 = document.calculateForm.files;
-               if (!isInt(count4.value))
-               {
-                  alert("Number of files must be integer.");
-                  document.calculateForm.files.focus();
-                  return (false);
-               } 
-               var count5 = document.calculateForm.interfaces;
-               if (!isInt(count5.value))
-               {
-                  alert("Number of external interfaces must be integer.");
-                  document.calculateForm.interfaces.focus();
-                  return (false);
-               } 
+        else { 
                //  calculations when user choose simple weighting factor
-               if (factor == 1)
-               {  
-                  i = Number(document.calculateForm.inputs.value);
-                  j = Number(document.calculateForm.outputs.value);
-                  k = Number(document.calculateForm.inquiries.value);
-                  l = Number(document.calculateForm.files.value);
-                  m = Number(document.calculateForm.interfaces.value);
-                  document.calculateForm.tinputs.value = roundOff(i * 3,2)
-                  document.calculateForm.toutputs.value = roundOff(j * 4,2)
-                  document.calculateForm.tinquiries.value = roundOff(k * 3,2)
-                  document.calculateForm.tfiles.value = roundOff(l * 7,2)
-                  document.calculateForm.tinterfaces.value = roundOff(m * 5,2)
-                  Total1 = i * 3 + j * 4 + k * 3 + l * 7 + m * 5
-                  document.calculateForm.total1.value = roundOff(Total1,2);
-               }
-              // calculation when user choose average weighting factor
-               else if (factor == 2)
-                   {
-                     i = Number(document.calculateForm.inputs.value);
-                     j = Number(document.calculateForm.outputs.value);
-                     k = Number(document.calculateForm.inquiries.value);
-                     l = Number(document.calculateForm.files.value);
-                     m = Number(document.calculateForm.interfaces.value);
-                     document.calculateForm.tinputs.value = roundOff(i * 4,2)
-                     document.calculateForm.toutputs.value = roundOff(j * 5,2)
-                     document.calculateForm.tinquiries.value = roundOff(k * 4,2)
-                     document.calculateForm.tfiles.value = roundOff(l * 10,2)
-                     document.calculateForm.tinterfaces.value = roundOff(m * 7,2)
-                     Total1 = i * 4 + j * 5 + k * 4 + l * 10 + m * 7
-                     document.calculateForm.total1.value = roundOff(Total1,2);
-                  }
-                 // calculation when user choose teh complex weighting factor
-                  else if (factor == 3)
-                       {
-                           i = Number(document.calculateForm.inputs.value);
-                           j = Number(document.calculateForm.outputs.value);
-                           k = Number(document.calculateForm.inquiries.value);
-                           l = Number(document.calculateForm.files.value);
-                           m = Number(document.calculateForm.interfaces.value);
-                           document.calculateForm.tinputs.value = roundOff(i * 6,2)
-                           document.calculateForm.toutputs.value = roundOff(j * 7,2)
-                           document.calculateForm.tinquiries.value = roundOff(k * 6,2)
-                           document.calculateForm.tfiles.value = roundOff(l * 15,2)
-                           document.calculateForm.tinterfaces.value = roundOff(m * 10,2)
-                           Total1 = i * 6 + j * 7 + k * 6 + l * 15 + m * 10
-                           document.calculateForm.total1.value = roundOff(Total1,2);
-                      }
+               
+			   var factor1 = document.calculateForm.group1.value
+			   var factor2 = document.calculateForm.group2.value
+			   var factor3 = document.calculateForm.group3.value
+			   var factor4 = document.calculateForm.group4.value
+			   var factor5 = document.calculateForm.group5.value
+			   
+			   
+						   i = Number(document.calculateForm.count1.value);
+                           j = Number(document.calculateForm.count2.value);
+                           k = Number(document.calculateForm.count3.value);
+                           l = Number(document.calculateForm.count4.value);
+                           m = Number(document.calculateForm.count5.value);
+					  Total1 = i * factor1 + j * factor2 + k * factor3 + l * factor4 + m * factor5;
+					  document.calculateForm.total1.value = roundOff(Total1,2);
+                    
+							document.calculateForm.tinputs.value = i * factor1
+                           document.calculateForm.toutputs.value = j * factor2
+                           document.calculateForm.tinquiries.value = k * factor3
+                           document.calculateForm.tfiles.value = l * factor4
+                           document.calculateForm.tinterfaces.value = m * factor5
              }
+			 
     }
 
   
@@ -308,95 +250,122 @@
       <TH width="37" bordercolor="#FFFF00" bgcolor="#00FFFF"> &nbsp;
       <TH width="56" bordercolor="#FFFF00" bgcolor="#00FFFF"> <font color="#0000FF">Simple
         <span style="background-color: #00FFFF">
-           <INPUT TYPE = "RADIO" NAME = "FactorField" value="1" onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
         </span></font>
       <TH width="65" bordercolor="#FFFF00" bgcolor="#00FFFF"> <font color="#0000FF">Average
-           <INPUT TYPE = "RADIO" NAME = "FactorField" value="2"  onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
+          
         </font>
       <TH width="75" bordercolor="#FFFF00" bgcolor="#00FFFF"> <font color="#0000FF">Complex
-           <INPUT TYPE = "RADIO" NAME = "FactorField" value="3" onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
+           
         </font>
       <TH width="43" bordercolor="#FFFF00" bgcolor="#00FFFF"> &nbsp;
       <TH width="81" bordercolor="#FFFF00" bgcolor="#00FFFF"> <font color="#0000FF">Total</font>
-        
+       
+	
     <TR><TD width="216" bordercolor="#FFFF00" align="left">
         <font color="#0000FF"><b>&nbsp;Number of user inputs</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-         <INPUT TYPE = "TEXT" NAME = "inputs" value="" size = 5 onFocus = "promptFactor()"
+         <INPUT TYPE = "TEXT" NAME = "count1" value="" size = 5 onFocus = "promptFactor()"
 	     onBlur = "clearStatus()">
         </b></font>
         <TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
-        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>3</b></font>
-        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>4</b></font>
-        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>6</b></font>
+        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group1" value="3" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group1" value="4" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group1" value="6" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
         <TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
         <TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
            <INPUT TYPE = "TEXT" NAME = "tinputs" value="" size = 5 onfocus="return unfocus_tinputs()">
            </b></font>
 
-    <TR><TD width="216" bordercolor="#FFFF00" align="left"><font color="#0000FF"><b>&nbsp;
-        Number of user outputs</b></font>
+    <TR><TD width="216" bordercolor="#FFFF00" align="left">
+        <font color="#0000FF"><b>&nbsp;Number of user outputs</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "outputs" value="" size = 5 onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
-          </b></font>
+         <INPUT TYPE = "TEXT" NAME = "count2" value="" size = 5 onFocus = "promptFactor()"
+	     onBlur = "clearStatus()">
+        </b></font>
         <TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
-        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>4</b></font>
-        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>5</b></font>
-        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>7</b></font>
+        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group2" value="4" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group2" value="5" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group2" value="7" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
         <TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
         <TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "toutputs" value="" size = 5 onfocus="return unfocus_toutputs()">
-          </b></font>
+           <INPUT TYPE = "TEXT" NAME = "toutputs" value="" size = 5 onfocus="return unfocus_tinputs()">
+           </b></font>
 
-    <TR><TD width="216" bordercolor="#FFFF00" align="left"><font color="#0000FF"><b>&nbsp;
-        Number of user inquiries</b></font>
+    <TR><TD width="216" bordercolor="#FFFF00" align="left">
+        <font color="#0000FF"><b>&nbsp;Number of user inquiries</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "inquiries" value="" size = 5 onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
-          </b></font>
+         <INPUT TYPE = "TEXT" NAME = "count3" value="" size = 5 onFocus = "promptFactor()"
+	     onBlur = "clearStatus()">
+        </b></font>
         <TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
-        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>3</b></font>
-        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>4</b></font>
-        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>6</b></font>
+        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group3" value="3" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group3" value="4" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
+        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			<INPUT TYPE = "RADIO" NAME = "group3" value="6" onFocus = "promptFactor()"
+			onBlur = "clearStatus()"></b></font>
         <TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
         <TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "tinquiries" value="" size = 5 onfocus="return unfocus_tinquiries()"> 
-          </b></font>
-
-    <TR><TD width="216" bordercolor="#FFFF00" align="left"><font color="#0000FF"><b>&nbsp;
-        Number of files</b></font>
-        <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "files" value="" size = 5 onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
-          </b></font>
-        <TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
-        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>7</b></font>
-        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>10</b></font>
-        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>15</b></font>
-        <TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
-        <TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "tfiles" value="" size = 5 onfocus="return unfocus_tfiles()"> 
-          </b></font>
-
-    <TR><TD width="216" bordercolor="#FFFF00" align="left"><font color="#0000FF"><b>&nbsp;
-        Number of external interfaces</b></font>
-        <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "interfaces" value="" size = 5 onFocus = "promptFactor()"
-	    onBlur = "clearStatus()">
-          </b></font>
-        <TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
-        <TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>5</b></font>
-        <TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>7</b></font>
-        <TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>10</b></font>
-        <TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
-        <TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
-          <INPUT TYPE = "TEXT" NAME = "tinterfaces" value="" size = 5 onfocus="return unfocus_tinterfaces()">
-          </b></font>
-
+           <INPUT TYPE = "TEXT" NAME = "tinquiries" value="" size = 5 onfocus="return unfocus_tinputs()">
+           </b></font>
+	
+	   <TR><TD width="216" bordercolor="#FFFF00" align="left">
+			<font color="#0000FF"><b>&nbsp;Number of files</b></font>
+			<TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			 <INPUT TYPE = "TEXT" NAME = "count4" value="" size = 5 onFocus = "promptFactor()"
+			 onBlur = "clearStatus()">
+			</b></font>
+			<TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
+			<TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group4" value="7" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group4" value="10" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group4" value="15" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
+			<TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			   <INPUT TYPE = "TEXT" NAME = "tfiles" value="" size = 5 onfocus="return unfocus_tinputs()">
+			   </b></font>
+		    
+    <TR><TD width="216" bordercolor="#FFFF00" align="left">
+			<font color="#0000FF"><b>&nbsp;Number of external interfaces</b></font>
+			<TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			 <INPUT TYPE = "TEXT" NAME = "count5" value="" size = 5 onFocus = "promptFactor()"
+			 onBlur = "clearStatus()">
+			</b></font>
+			<TD width="37" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>X</b></font>
+			<TD width="56" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group5" value="5" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="65" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group5" value="7" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="75" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+				<INPUT TYPE = "RADIO" NAME = "group5" value="10" onFocus = "promptFactor()"
+				onBlur = "clearStatus()"></b></font>
+			<TD width="43" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>=</b></font>
+			<TD width="81" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
+			   <INPUT TYPE = "TEXT" NAME = "tinterfaces" value="" size = 5 onfocus="return unfocus_tinputs()">
+			   </b></font>
+		  
     <TR><TD width="216" bordercolor="#FFFF00" align="left"><font color="#0000FF"><b>&nbsp;
         Count=Total</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center">
