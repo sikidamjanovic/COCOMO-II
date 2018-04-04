@@ -116,7 +116,7 @@
 	
 	factor = getValue(document.calculateForm.group1)
         //  this if is to check if the user forgot to check a weighting factor and he/she will see an alert message.        
-        if (factor == 0)
+        if (factor == -1) //Changed by Imperial from 0 to -1
            {  alert("We must select a weighting factor.");}
         //  The next if statements are to check if user inputs are valid which it should be integers
         else { 
@@ -174,7 +174,7 @@
     {
        var language = 0
        var loc = 0
-       showFP();
+       //showFP(); Changed by Linady Imperial commenting out
        language = getValue(document.calculateForm.LanguageField)
        //  This is to check if user selected a language or not.         
        if (language == 0) {  alert("We must select a Language");}
@@ -262,7 +262,7 @@
        
 	
     <TR><TD width="216" bordercolor="#FFFF00" align="left">
-        <font color="#0000FF"><b>&nbsp;Number of user inputs</b></font>
+        <font color="#0000FF"><b>&nbsp;Number of code Classes</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
          <INPUT TYPE = "TEXT" NAME = "count1" value="" size = 5 onFocus = "promptFactor()"
 	     onBlur = "clearStatus()">
@@ -283,7 +283,7 @@
            </b></font>
 
     <TR><TD width="216" bordercolor="#FFFF00" align="left">
-        <font color="#0000FF"><b>&nbsp;Number of user outputs</b></font>
+        <font color="#0000FF"><b>&nbsp;Number of SQL Views</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
          <INPUT TYPE = "TEXT" NAME = "count2" value="" size = 5 onFocus = "promptFactor()"
 	     onBlur = "clearStatus()">
@@ -304,7 +304,7 @@
            </b></font>
 
     <TR><TD width="216" bordercolor="#FFFF00" align="left">
-        <font color="#0000FF"><b>&nbsp;Number of user inquiries</b></font>
+        <font color="#0000FF"><b>&nbsp;Use of External APIs</b></font>
         <TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
          <INPUT TYPE = "TEXT" NAME = "count3" value="" size = 5 onFocus = "promptFactor()"
 	     onBlur = "clearStatus()">
@@ -325,7 +325,7 @@
            </b></font>
 	
 	   <TR><TD width="216" bordercolor="#FFFF00" align="left">
-			<font color="#0000FF"><b>&nbsp;Number of files</b></font>
+			<font color="#0000FF"><b>&nbsp;Code being Reused</b></font>
 			<TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
 			 <INPUT TYPE = "TEXT" NAME = "count4" value="" size = 5 onFocus = "promptFactor()"
 			 onBlur = "clearStatus()">
@@ -346,7 +346,7 @@
 			   </b></font>
 		    
     <TR><TD width="216" bordercolor="#FFFF00" align="left">
-			<font color="#0000FF"><b>&nbsp;Number of external interfaces</b></font>
+			<font color="#0000FF"><b>&nbsp;Graphics and/or Sound</b></font>
 			<TD width="55" bordercolor="#FFFF00" align="center"><font color="#0000FF"><b>
 			 <INPUT TYPE = "TEXT" NAME = "count5" value="" size = 5 onFocus = "promptFactor()"
 			 onBlur = "clearStatus()">
@@ -805,7 +805,7 @@
     -->
   <INPUT TYPE = "BUTTON" Name="FP" VALUE = "Show Function Points" onClick = "showFP()">
   </font> <font color="#0000FF">
-  <INPUT TYPE = "TEXT" VALUE="" NAME = "fpTotal" size = 10 onfocus="return unfocus_fpTotal()">
+  <INPUT TYPE = "TEXT" VALUE="" NAME = "fpTotal" size = 10 ">
   </font>
   <BR>
   </center>
@@ -826,58 +826,94 @@
       <TH style="background-color: #00FFFF" align="center" width="51"> 
            <font color="#0000FF"><b>Select</b></font>
 
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Assembly Language</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>320</b></font>
+    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; C</b></font>
+        <TD align="center" width="126"><font color="#0000FF"><b>128</b></font>
         <TD align="center" width="51"><font color="#0000FF">
-          <b><INPUT TYPE = "RADIO" NAME = "LanguageField" value="320" onFocus = "promptLanguage()" 
+          <b><INPUT TYPE = "RADIO" NAME = "LanguageField" value="128" onFocus = "promptLanguage()" 
              onBlur = "clearStatus()">
           </b></font>
 
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; C</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>128</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-         <INPUT TYPE = "RADIO" NAME = "LanguageField" value="320" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; COBOL</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>105</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-          <INPUT TYPE = "RADIO" NAME = "LanguageField" value="105" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
+    <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; C++</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>64</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="64" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
 
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Fortran</b></font>
-       <TD align="center" width="126"><font color="#0000FF"><b>105</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-          <INPUT TYPE = "RADIO" NAME = "LanguageField" value="105" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Pascal</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>90</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-           <INPUT TYPE = "RADIO" NAME = "LanguageField" value="90" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
-
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Ada</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>70</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-           <INPUT TYPE = "RADIO" NAME = "LanguageField" value="70" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Object-Oriented Languages</b></font>
-        <TD align="center" width="126"><font color="#0000FF"><b>30</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-              <INPUT TYPE = "RADIO" NAME = "LanguageField" value="30" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
-
-    <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Fourth Generation Languages (4GLs)</b></font>
-       <TD align="center" width="126"><font color="#0000FF"><b>20</b></font>
-        <TD align="center" width="51"><font color="#0000FF"><b>
-           <INPUT TYPE = "RADIO" NAME = "LanguageField" value="20" onFocus = "promptLanguage()"
-            	   onBlur = "clearStatus()">
-          </b></font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; Java</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>30</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="30" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; C#</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>30</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="30" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; Visual Basic</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>30</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="30" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; PHP</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>20</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="20" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; Javascript</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>20</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="20" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; Ruby</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>20</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="20" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
+        <TR>
+            <TD width="272"><font color="#0000FF"><b>&nbsp; Node.JS</b></font>
+            <TD align="center" width="126"><font color="#0000FF"><b>20</b></font>
+            <TD align="center" width="51">
+                <font color="#0000FF">
+                    <b>
+                        <INPUT TYPE="RADIO" NAME="LanguageField" value="20" onFocus="promptLanguage()"
+                               onBlur="clearStatus()">
+                    </b>
+                </font>
     <TR><TD width="272"><font color="#0000FF"><b>&nbsp; Code Generators</b></font>
         <TD align="center" width="126"><font color="#0000FF"><b>15</b></font>
         <TD align="center" width="51"><font color="#0000FF"><b>
